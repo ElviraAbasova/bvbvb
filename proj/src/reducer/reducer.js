@@ -8,18 +8,16 @@ function reducer(state,action) {
                     name: state.input
                 }
             return  { input:"",array:[...state.array, newObj]};
-            case "SetFilter":
+            case "SetDelete":
             let filter =  state.array.filter(item => item.id != action.id)
-
-          
             return  {...state, array: filter};
             case "SetEdit":
                 let editItem = state.array.find(item => item.id == action.id)
-                let edit = prompt("Edit Item")
+                let editText = prompt("Edit Item", editItem.name)
+                editItem.name = editText
 
-                editItem.name = edit
-          
-            return  {arr:[...state.array,editItem ]};
+                
+            return {...state, editItem } ;
 
            
     
